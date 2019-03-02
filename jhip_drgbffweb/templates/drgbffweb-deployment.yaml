@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drgbffweb
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drgbffweb
+      version: "v1"
+  template:
+    metadata:
+      labels:
+        app: drgbffweb
+        version: "v1"
+    spec:
+      initContainers:
+        - name: init-ds
+          image: busybox:latest
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+                while true
+                do
+                  rt=$(nc -z -w 1 drgbffweb-postgresql 5432)
+                  if [ $? -eq 0 ]; then
+                    echo "DB is UP"
+                    break
+                  fi
+                  echo "DB is not yet reachable;sleep for 10s before retry"
+                  sleep 10
+                done
+      containers:
+      - name: drgbffweb-app
+        image: registry.ns.bluemix.net/dragoonsbets/drgbffweb
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        - name: SPRING_CLOUD_CONSUL_HOST
+          value: consul.development.svc.cluster.local
+        - name: SPRING_CLOUD_CONSUL_PORT
+          value: "8500"
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
+          value: "false"
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
+          value: drgbffweb
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
+          value: drgbffweb
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://drgbffweb-postgresql.development.svc.cluster.local:5432/drgBffWeb
+        - name: SPRING_DATASOURCE_USERNAME
+          value: drgbffweb
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: drgbffweb-postgresql
+              key: postgres-password
+        - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+          value: jhipster-kafka.development.svc.cluster.local
+        - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES
+          value: jhipster-zookeeper.development.svc.cluster.local
+        - name: SPRING_SLEUTH_PROPAGATION_KEYS
+          value: "x-request-id,x-ot-span-context"
+        - name: JAVA_OPTS
+          value: " -Xmx256m -Xms256m"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: http
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          failureThreshold: 6
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: http
+          initialDelaySeconds: 120

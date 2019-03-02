@@ -1,28 +1,87 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      version: "v1"
   template:
     metadata:
       labels:
         draft: {{ default "draft-app" .Values.draft }}
-        app: {{ template "fullname" . }}
+        app: {{ .Chart.Name }}
+        version: "v1"
 {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
     spec:
+      initContainers:
+        - name: init-ds
+          image: busybox:latest
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+                while true
+                do
+                  rt=$(nc -z -w 1 drgbffweb-postgresql 5432)
+                  if [ $? -eq 0 ]; then
+                    echo "DB is UP"
+                    break
+                  fi
+                  echo "DB is not yet reachable;sleep for 10s before retry"
+                  sleep 10
+                done
       containers:
-      - name: {{ .Chart.Name }}
+      - name: {{ .Chart.Name }}-app
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
+          value: internal
+        - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
+          value: internal
+        - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
+          value: csvc-keycloak-http.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo
+        - name: SPRING_CLOUD_CONSUL_HOST
+          value: consul.development.svc.cluster.local
+        - name: SPRING_CLOUD_CONSUL_PORT
+          value: "8500"
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
+          value: "false"
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
+          value: drgbffweb
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
+          value: drgbffweb
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://drgbffweb-postgresql.development.svc.cluster.local:5432/drgBffWeb
+        - name: SPRING_DATASOURCE_USERNAME
+          value: drgbffweb
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: drgbffweb-postgresql
+              key: postgres-password
+        - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+          value: jhipster-kafka.development.svc.cluster.local
+        - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES
+          value: jhipster-zookeeper.development.svc.cluster.local
+        - name: SPRING_SLEUTH_PROPAGATION_KEYS
+          value: "x-request-id,x-ot-span-context"
+        - name: JAVA_OPTS
+          value: " -Xmx256m -Xms256m"
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.service.internalPort }}
+        - name: {{ .Values.service.portName }}
+          containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
           httpGet:
             path: {{ .Values.probePath }}
@@ -38,6 +97,8 @@ spec:
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

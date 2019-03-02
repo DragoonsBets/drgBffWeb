@@ -1,0 +1,17 @@
+name: drgbffweb
+version: 5.8.1
+appVersion: 1.0.0
+description: drgbffweb is a JHipster based gateway application
+icon: https://www.jhipster.tech/images/logo/logo-jhipster-drink-coffee.svg
+keywords:
+- spring
+- angular
+- react
+- JHipster
+- drgbffweb
+home: https://www.jhipster.tech/
+sources:
+- https://github.com/jhipster/generator-jhipster.git
+maintainers:
+- name: Team JHipster
+  email:
