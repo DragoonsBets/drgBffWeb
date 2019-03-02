@@ -16,12 +16,12 @@ service:
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
 resources:
   limits:
-    cpu: 500m
-    memory: 512Mi
+    cpu: 2
+    memory: 4Gi
   requests:
-    cpu: 400m
-    memory: 512Mi
-probePath: /actuator/health
+    cpu: 1
+    memory: 2Gi
+probePath: /management/health
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
