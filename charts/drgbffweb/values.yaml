@@ -35,7 +35,7 @@ terminationGracePeriodSeconds: 10
 postgresql:
   enabled: true
   postgresUser: drgbffweb
-  postgresqlDatabase: drgBffWeb
+  postgresDatabase: drgBffWeb
   pgHbaConfiguration: "host all drgbffweb all trust"
   # Starts a prometeus exporter
   metrics.enabled: false
