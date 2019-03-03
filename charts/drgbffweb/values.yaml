@@ -33,5 +33,5 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 postgresql:
-  enabled: false
+  enabled: true
   postgresUser: drgbffweb
