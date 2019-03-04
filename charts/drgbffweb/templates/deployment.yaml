@@ -61,14 +61,14 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://drgbffweb-postgresql.development.svc.cluster.local:5432/drgBffWeb
+          value: jdbc:postgresql://drgbffweb-postgresql-headless.development.svc.cluster.local:5432/drgBffWeb
         - name: SPRING_DATASOURCE_USERNAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: drgbffweb-postgresql
-              key: postgres-password
+              key: postgresql-password
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
           value: jhipster-kafka.development.svc.cluster.local
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES

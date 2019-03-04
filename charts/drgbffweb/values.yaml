@@ -37,5 +37,7 @@ postgresql:
   postgresqlUser: drgbffweb
   postgresqlDatabase: drgBffWeb
   pgHbaConfiguration: "host all drgbffweb all trust"
+  name: drgbffweb
+  fullname: drgbffweb-postgres
   # Starts a prometeus exporter
   metrics.enabled: false
