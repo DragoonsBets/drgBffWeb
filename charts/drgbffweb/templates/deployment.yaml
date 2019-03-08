@@ -49,9 +49,9 @@ spec:
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
           value: internal
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
-          value: csvc-keycloak-http.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo
+          value: csvc-keycloak-http.jx-staging.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo
         - name: SPRING_CLOUD_CONSUL_HOST
-          value: consul.development.svc.cluster.local
+          value: consul.jx-staging.svc.cluster.local
         - name: SPRING_CLOUD_CONSUL_PORT
           value: "8500"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
@@ -61,7 +61,7 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://drgbffweb-postgresql-headless.development.svc.cluster.local:5432/drgBffWeb
+          value: jdbc:postgresql://drgbffweb-postgresql-headless.jx-staging.svc.cluster.local:5432/drgBffWeb
         - name: SPRING_DATASOURCE_USERNAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_PASSWORD
@@ -70,9 +70,9 @@ spec:
               name: drgbffweb-postgresql
               key: postgresql-password
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
-          value: jhipster-kafka.development.svc.cluster.local
+          value: jhipster-kafka.jx-staging.svc.cluster.local
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES
-          value: jhipster-zookeeper.development.svc.cluster.local
+          value: jhipster-zookeeper.jx-staging.svc.cluster.local
         - name: SPRING_SLEUTH_PROPAGATION_KEYS
           value: "x-request-id,x-ot-span-context"
         - name: JAVA_OPTS

@@ -32,12 +32,3 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
-postgresql:
-  enabled: true
-  postgresqlUser: drgbffweb
-  postgresqlDatabase: drgBffWeb
-  pgHbaConfiguration: "host all all all trust"
-  name: drgbffweb
-  fullname: drgbffweb-postgres
-  # Starts a prometeus exporter
-  metrics.enabled: false
