@@ -11,7 +11,7 @@ import com.dragoons.core.security.oauth2.SimplePrincipalExtractor;
 @Configuration
 public class OAuth2TokenServicesConfiguration {
 
-    private static final String OAUTH2_PRINCIPAL_ATTRIBUTE = "preferred_username";
+    private static final String OAUTH2_PRINCIPAL_ATTRIBUTE = "drg-bff-web";
     private static final String OAUTH2_AUTHORITIES_ATTRIBUTE = "roles";
 
     @Bean
