@@ -57,9 +57,11 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
           value: "false"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
-          value: drgbffweb.jx-staging.svc.cluster.local
+          value: drgbffweb.jx-staging
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
+        - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_PORT
+          value: 80
         - name: SPRING_DATASOURCE_URL
           value: jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgbffweb
         - name: SPRING_DATASOURCE_USERNAME
