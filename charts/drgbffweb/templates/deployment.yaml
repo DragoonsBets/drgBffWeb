@@ -57,17 +57,17 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
           value: "false"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
-          value: drgbffweb
+          value: drgbffweb.jx-staging.svc.cluster.local
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://drgbffweb-postgresql-headless.jx-staging.svc.cluster.local:5432/drgBffWeb
+          value: jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgBffWeb
         - name: SPRING_DATASOURCE_USERNAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: drgbffweb-postgresql
+              name: data-bffweb-postgres
               key: postgresql-password
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
           value: jhipster-kafka.jx-staging.svc.cluster.local
