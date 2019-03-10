@@ -9,13 +9,13 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: {{ template "fullname" . }}
       version: "v1"
   template:
     metadata:
       labels:
         draft: {{ default "draft-app" .Values.draft }}
-        app: {{ .Chart.Name }}
+        app: {{ template "fullname" . }}
         version: "v1"
 {{- if .Values.podAnnotations }}
       annotations:
