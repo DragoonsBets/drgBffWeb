@@ -61,7 +61,7 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgBffWeb
+          value: jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgbffweb
         - name: SPRING_DATASOURCE_USERNAME
           value: drgbffweb
         - name: SPRING_DATASOURCE_PASSWORD
