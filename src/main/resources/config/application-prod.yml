@@ -113,6 +113,14 @@ server:
 # ===================================================================
 
 jhipster:
+    cors:
+        # allowed-origins: "https://drg-ui.development.drogon.dragoons.io"
+        allowed-origins: "*"
+        allowed-methods: "*"
+        allowed-headers: "*"
+        exposed-headers: "Authorization,Link,X-Total-Count"
+        allow-credentials: true
+        max-age: 1800
     gateway:
         rate-limiting:
             enabled: false
