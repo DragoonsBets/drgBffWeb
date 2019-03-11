@@ -45,9 +45,9 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
-          value: "drg-bff-web"
+          value: "web_app"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
-          value: "819470ea-2c0e-4755-b163-d2025c1a757c"
+          value: "web_app"
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
           value: "https://keycloak.jx-staging.viserion.dragoons.gg/auth/realms/jhipster/protocol/openid-connect/userinfo"
         - name: SPRING_CLOUD_CONSUL_HOST
