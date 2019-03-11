@@ -31,7 +31,7 @@ spec:
             - |
                 while true
                 do
-                  rt=$(nc -z -w 1 drgbffweb-postgresql 5432)
+                  rt=$(nc -z -w 1 data-bffweb-postgres 5432)
                   if [ $? -eq 0 ]; then
                     echo "DB is UP"
                     break
@@ -49,7 +49,7 @@ spec:
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
           value: "819470ea-2c0e-4755-b163-d2025c1a757c"
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
-          value: "csvc-keycloak-http.jx-staging.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo"
+          value: "https://keycloak.jx-staging.viserion.dragoons.gg/auth/realms/jhipster/protocol/openid-connect/userinfo"
         - name: SPRING_CLOUD_CONSUL_HOST
           value: "consul.jx-staging.svc.cluster.local"
         - name: SPRING_CLOUD_CONSUL_PORT
