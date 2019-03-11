@@ -130,13 +130,13 @@ spring:
 security:
     oauth2:
         client:
-            access-token-uri: https://csvc-keycloak-http.jx-staging:9080/auth/realms/jhipster/protocol/openid-connect/token
-            user-authorization-uri: https://csvc-keycloak-http.jx-staging:9080/auth/realms/jhipster/protocol/openid-connect/auth
+            access-token-uri: https://csvc-keycloak-http.jx-staging/auth/realms/jhipster/protocol/openid-connect/token
+            user-authorization-uri: https://csvc-keycloak-http.jx-staging/auth/realms/jhipster/protocol/openid-connect/auth
             client-id: drg-bff-web
-            client-secret: 9bddd055-efff-4ba7-bd0b-bb24e9f4e124
+            client-secret: 819470ea-2c0e-4755-b163-d2025c1a757c
             scope: openid profile email
         resource:
-            user-info-uri: https://csvc-keycloak-http.jx-staging:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
+            user-info-uri: https://csvc-keycloak-http.jx-staging/auth/realms/jhipster/protocol/openid-connect/userinfo
 
 server:
     servlet:
