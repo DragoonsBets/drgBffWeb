@@ -47,7 +47,7 @@ spec:
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
           value: drg-bff-web
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
-          value: 9bddd055-efff-4ba7-bd0b-bb24e9f4e124
+          value: 819470ea-2c0e-4755-b163-d2025c1a757c
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
           value: csvc-keycloak-http.jx-staging.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo
         - name: SPRING_CLOUD_CONSUL_HOST
@@ -57,7 +57,7 @@ spec:
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
           value: "false"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
-          value: drgbffweb.jx-staging
+          value: drgbffweb.jx-staging.svc.cluster.local
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
           value: drgbffweb
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_PORT
