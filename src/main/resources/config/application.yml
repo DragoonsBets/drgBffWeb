@@ -132,8 +132,8 @@ security:
         client:
             access-token-uri: https://keycloak.jx-staging.viserion.dragoons.gg/auth/realms/jhipster/protocol/openid-connect/token
             user-authorization-uri: https://keycloak.jx-staging.viserion.dragoons.gg/auth/realms/jhipster/protocol/openid-connect/auth
-            client-id: drg-bff-web
-            client-secret: 819470ea-2c0e-4755-b163-d2025c1a757c
+            client-id: web_app
+            client-secret: web_app
             scope: openid profile email
         resource:
             user-info-uri: https://keycloak.jx-staging.viserion.dragoons.gg/auth/realms/jhipster/protocol/openid-connect/userinfo
