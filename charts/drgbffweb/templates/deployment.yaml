@@ -43,38 +43,38 @@ spec:
       - name: {{ .Chart.Name }}-app
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: prod
+          value: "prod"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
-          value: drg-bff-web
+          value: "drg-bff-web"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
-          value: 819470ea-2c0e-4755-b163-d2025c1a757c
+          value: "819470ea-2c0e-4755-b163-d2025c1a757c"
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
-          value: csvc-keycloak-http.jx-staging.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo
+          value: "csvc-keycloak-http.jx-staging.svc.cluster.local/auth/realms/jhipster/protocol/openid-connect/userinfo"
         - name: SPRING_CLOUD_CONSUL_HOST
-          value: consul.jx-staging.svc.cluster.local
+          value: "consul.jx-staging.svc.cluster.local"
         - name: SPRING_CLOUD_CONSUL_PORT
           value: "8500"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS
           value: "false"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_HOSTNAME
-          value: drgbffweb.jx-staging.svc.cluster.local
+          value: "drgbffweb.jx-staging.svc.cluster.local"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_NAME
-          value: drgbffweb
+          value: "drgbffweb"
         - name: SPRING_CLOUD_CONSUL_DISCOVERY_SERVICE_PORT
-          value: 80
+          value: "80"
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgbffweb
+          value: "jdbc:postgresql://data-bffweb-postgres.jx-staging.svc.cluster.local:5432/drgbffweb"
         - name: SPRING_DATASOURCE_USERNAME
-          value: drgbffweb
+          value: "drgbffweb"
         - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: data-bffweb-postgres
               key: postgresql-password
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
-          value: jhipster-kafka.jx-staging.svc.cluster.local
+          value: "jhipster-kafka.jx-staging.svc.cluster.local"
         - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES
-          value: jhipster-zookeeper.jx-staging.svc.cluster.local
+          value: "jhipster-zookeeper.jx-staging.svc.cluster.local"
         - name: SPRING_SLEUTH_PROPAGATION_KEYS
           value: "x-request-id,x-ot-span-context"
         - name: JAVA_OPTS
